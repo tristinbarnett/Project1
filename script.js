@@ -28,10 +28,10 @@ $(document).ready(function(){
             method: "GET"
         }).then(function(response){
             console.log(response);
-            $("#SearchResults").html(" ");
+            $("#searchResults").html(" ");
             $.each(response.results,function(index,value){
                 
-                $("#SearchResults").append("<a href='"+response.results[index].url+"' class ='cards'>"
+                $("#searchResults").append("<a href='"+response.results[index].url+"' class ='cards'>"
                     +"<div class='card_image'> <img src='"+ response.results[index].image_url+"'></div>"
                     +"<div class='card_name'> "+ response.results[index].title+"</div>"+
                 "</a>");
