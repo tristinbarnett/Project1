@@ -1,20 +1,21 @@
-$("#shounen").on("click", function() {
 
-});
-$("#supernatural").on("click", function() {
-
-});
-$("#slice of life").on("click", function() {
-
-});
-$("#romance").on("click", function() {
-
-});
-$("#magic").on("click", function() {
-  
-});
 
 $(document).ready(function(){
+    $("#shounen").on("click", function() {
+
+    });
+    $("#supernatural").on("click", function() {
+    
+    });
+    $("#slice of life").on("click", function() {
+    
+    });
+    $("#romance").on("click", function() {
+    
+    });
+    $("#magic").on("click", function() {
+      
+    });
     
     
     console.log("inside ready");
@@ -27,10 +28,10 @@ $(document).ready(function(){
             method: "GET"
         }).then(function(response){
             console.log(response);
-            $(".animeSearchResults").html(" ");
+            $("#SearchResults").html(" ");
             $.each(response.results,function(index,value){
                 
-                $(".animeSearchResults").append("<a href='"+response.results[index].url+"' class ='cards'>"
+                $("#SearchResults").append("<a href='"+response.results[index].url+"' class ='cards'>"
                     +"<div class='card_image'> <img src='"+ response.results[index].image_url+"'></div>"
                     +"<div class='card_name'> "+ response.results[index].title+"</div>"+
                 "</a>");
