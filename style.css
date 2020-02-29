@@ -4,3 +4,6 @@
 button{
     margin:15px;
 }
+.columns{
+    display:flex
+}
