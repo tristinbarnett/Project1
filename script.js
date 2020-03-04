@@ -29,6 +29,16 @@ $(document).ready(function(){
         search(queryURL)
         
     })
+    $(".index0").click(function(){
+        console.log("isbeenclicked")
+        $(".pages").attr("style='display:none'")
+        $(".page0").removeAttr("style")
+     })
+     $(".index1").click(function(){
+        console.log("isbeenclicked")
+        $(".pages").attr("style='display:none'")
+        $(".page1").removeAttr("style")
+     })
 
 
 })
@@ -55,9 +65,15 @@ function genre(queryURL){
         method:"GET"
     }).then(function(response){
         console.log(response)
-        
+
+        var pagenumbers= response.anime.length/10;
+        console.log(pagenumbers)
+        for(var i=0; i<pagenumbers; i++){
+        $("#recommendations").append(`<div class ='pages page${i}' style="display:none"> </div>`)}
         $.each(response.anime,function(index,value){
-            $("#recommendations").append(`<div onclick="ID(${response.anime[index].mal_id})" class='animeName' value='${response.anime[index].mal_id}'>  ${response.anime[index].title}</div>`)
+            var num = Math.floor(index/10);
+            $(".page"+num).append(`<div onclick="ID(${response.anime[index].mal_id})" class='animeName' value='${response.anime[index].mal_id}'>  ${response.anime[index].title}</div>`)
+            
         })
     })
 }
@@ -86,6 +102,8 @@ function ID(animeID){
             method: "GET"
         }).then(function(response){
             //console.log(response)
+            var pagenumbers= response.recommendations.length/10;
+            console.log(pagenumbers)
             $.each(response.recommendations,function(index,value){
             $("#recommendations").append(`<div class='animeName' onclick="ID(${response.recommendations[index].mal_id})" value=${response.recommendations[index].mal_id}'> ${response.recommendations[index].title}</div>`)
             })
