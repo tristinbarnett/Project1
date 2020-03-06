@@ -1,17 +1,25 @@
 $(document).ready(function(){
-    $("#shounen").on("click", function() {
+    $(".button").click(function(){
+        console.log("genre-button")
+        var d = $(this).data("value")
+        console.log(d)
+        var genreURL ="https://api.jikan.moe/v3/genre/anime/"+d+"/1"
+        $.ajax({
+            url: genreURL,
+            method: "GET"
+        }).then(function(response){
+            $("#searchResults").html(" ");
+            for(var i =0; i < 10; i++){
+                console.log("test1")
+            $("#searchResults").append("<div class='animeName' >"+ response.anime[i].title+"</div>")
+                
+                
+            }
+        })
+         
+    })
 
-    });
-    $("#supernatural").on("click", function() {
     
-    });
-    $("#slice of life").on("click", function() {
-    
-    });
-    $("#romance").on("click", function() {
-    
-    });
-    $("#magic").click(function() {
 
         var queryURL= "https://api.jikan.moe/v3/genre/anime/16/1";
         console.log("isbeenclicked");
@@ -20,8 +28,7 @@ $(document).ready(function(){
         
     });
     
-    $(".search").click(function(){
-        event.preventDefault();
+    $(".searchButton").click(function(){
         var anime = $(".input").val();
         //console.log(anime)
         var queryURL ="https://api.jikan.moe/v3/search/anime?q="+anime+"&limit=10";
