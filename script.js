@@ -14,8 +14,8 @@ $(document).ready(function(){
     $("#magic").click(function() {
 
         var queryURL= "https://api.jikan.moe/v3/genre/anime/16/1";
-        console.log("isbeenclicked")
-        genre(queryURL)
+        console.log("isbeenclicked");
+        genre(queryURL);
         
         
     });
@@ -24,22 +24,11 @@ $(document).ready(function(){
         event.preventDefault();
         var anime = $(".input").val();
         //console.log(anime)
-        var queryURL ="https://api.jikan.moe/v3/search/anime?q="+anime+"&limit=10"
+        var queryURL ="https://api.jikan.moe/v3/search/anime?q="+anime+"&limit=10";
         // ajax call for what the user input into the textbox
-        search(queryURL)
+        search(queryURL);
         
-    })
-    $(".index0").click(function(){
-        console.log("isbeenclicked")
-        $(".pages").attr("style='display:none'")
-        $(".page0").removeAttr("style")
-     })
-     $(".index1").click(function(){
-        console.log("isbeenclicked")
-        $(".pages").attr("style='display:none'")
-        $(".page1").removeAttr("style")
-     })
-
+    });
 
 })
 
@@ -64,15 +53,9 @@ function genre(queryURL){
         url:queryURL,
         method:"GET"
     }).then(function(response){
-        console.log(response)
-
-        var pagenumbers= response.anime.length/10;
-        console.log(pagenumbers)
-        for(var i=0; i<pagenumbers; i++){
-        $("#recommendations").append(`<div class ='pages page${i}' style="display:none"> </div>`)}
         $.each(response.anime,function(index,value){
             var num = Math.floor(index/10);
-            $(".page"+num).append(`<div onclick="ID(${response.anime[index].mal_id})" class='animeName' value='${response.anime[index].mal_id}'>  ${response.anime[index].title}</div>`)
+            $("#recommendations").append(`<div onclick="ID(${response.anime[index].mal_id})" class='animeName' value='${response.anime[index].mal_id}'>  ${response.anime[index].title}</div>`)
             
         })
     })
@@ -102,8 +85,8 @@ function ID(animeID){
             method: "GET"
         }).then(function(response){
             //console.log(response)
-            var pagenumbers= response.recommendations.length/10;
-            console.log(pagenumbers)
+            
+            
             $.each(response.recommendations,function(index,value){
             $("#recommendations").append(`<div class='animeName' onclick="ID(${response.recommendations[index].mal_id})" value=${response.recommendations[index].mal_id}'> ${response.recommendations[index].title}</div>`)
             })
