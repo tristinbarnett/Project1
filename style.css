@@ -5,9 +5,11 @@
 }
 .title{
     color: white;
+    font-size: 40px;
 }
 button{
     margin:15px;
+    Width: 8em
 }
 .columns{
     display:flex
