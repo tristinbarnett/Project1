@@ -18,15 +18,9 @@ $(document).ready(function(){
         })
          
     })
-
-    
-
-        var queryURL= "https://api.jikan.moe/v3/genre/anime/16/1";
-        console.log("isbeenclicked");
-        genre(queryURL);
         
         
-    });
+
     
     $(".searchButton").click(function(){
         var anime = $(".input").val();
