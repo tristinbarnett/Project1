@@ -1,10 +1,30 @@
 
 
 $(document).ready(function(){
+    $(".button").click(function(){
+        console.log("genre-button")
+        var d = $(this).data("value")
+        console.log(d)
+        var genreURL ="https://api.jikan.moe/v3/genre/anime/"+d+"/1"
+        $.ajax({
+            url: genreURL,
+            method: "GET"
+        }).then(function(response){
+            $("#searchResults").html(" ");
+            for(var i =0; i < 10; i++){
+                console.log("test1")
+            $("#searchResults").append("<div class='animeName' >"+ response.anime[i].title+"</div>")
+                
+                
+            }
+        })
+         
+    })
+
     
 
     
-    $(".button").click(function(){
+    $(".searchButton").click(function(){
         var anime = $(".input").val();
         console.log(anime)
         var queryURL ="https://api.jikan.moe/v3/search/anime?q="+anime+"&limit=10"
