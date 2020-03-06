@@ -1,5 +1,10 @@
 .hero{
     margin-bottom:20px;
+    background: url(https://www.jakpost.travel/wimages/large/37-373531_anime-twitter-banner-sao.png);
+    background-size:cover;
+}
+.title{
+    color: white;
 }
 button{
     margin:15px;
@@ -7,3 +12,4 @@ button{
 .columns{
     display:flex
 }
+
