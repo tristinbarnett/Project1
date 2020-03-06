@@ -1,27 +1,17 @@
 $(document).ready(function(){
+    // check if genre buttons are clicked
     $(".button").click(function(){
-        console.log("genre-button")
         var d = $(this).data("value")
         console.log(d)
         var genreURL ="https://api.jikan.moe/v3/genre/anime/"+d+"/1"
-        $.ajax({
-            url: genreURL,
-            method: "GET"
-        }).then(function(response){
-            $("#searchResults").html(" ");
-            for(var i =0; i < 10; i++){
-                console.log("test1")
-            $("#searchResults").append("<div class='animeName' >"+ response.anime[i].title+"</div>")
-                
-                
-            }
-        })
+        // ajax call for the genre
+        genre(genreURL)
          
     })
         
         
 
-    
+    // check if search button are clicked
     $(".searchButton").click(function(){
         var anime = $(".input").val();
         //console.log(anime)
@@ -54,8 +44,8 @@ function genre(queryURL){
         url:queryURL,
         method:"GET"
     }).then(function(response){
+        $("#recommendations").html("");
         $.each(response.anime,function(index,value){
-            var num = Math.floor(index/10);
             $("#recommendations").append(`<div onclick="ID(${response.anime[index].mal_id})" class='animeName' value='${response.anime[index].mal_id}'>  ${response.anime[index].title}</div>`)
             
         })
@@ -84,10 +74,7 @@ function ID(animeID){
         $.ajax({
             url: queryIDURL,
             method: "GET"
-        }).then(function(response){
-            //console.log(response)
-            
-            
+        }).then(function(response){    
             $.each(response.recommendations,function(index,value){
             $("#recommendations").append(`<div class='animeName' onclick="ID(${response.recommendations[index].mal_id})" value=${response.recommendations[index].mal_id}'> ${response.recommendations[index].title}</div>`)
             })
