@@ -18,19 +18,18 @@ $(document).ready(function(){
         })
          
     })
-
-    
+        
+        
 
     
     $(".searchButton").click(function(){
         var anime = $(".input").val();
         //console.log(anime)
-        var queryURL ="https://api.jikan.moe/v3/search/anime?q="+anime+"&limit=10"
+        var queryURL ="https://api.jikan.moe/v3/search/anime?q="+anime+"&limit=10";
         // ajax call for what the user input into the textbox
-        search(queryURL)
+        search(queryURL);
         
-    })
-
+    });
 
 })
 
@@ -55,10 +54,10 @@ function genre(queryURL){
         url:queryURL,
         method:"GET"
     }).then(function(response){
-        console.log(response)
-        
         $.each(response.anime,function(index,value){
+            var num = Math.floor(index/10);
             $("#recommendations").append(`<div onclick="ID(${response.anime[index].mal_id})" class='animeName' value='${response.anime[index].mal_id}'>  ${response.anime[index].title}</div>`)
+            
         })
     })
 }
@@ -87,6 +86,8 @@ function ID(animeID){
             method: "GET"
         }).then(function(response){
             //console.log(response)
+            
+            
             $.each(response.recommendations,function(index,value){
             $("#recommendations").append(`<div class='animeName' onclick="ID(${response.recommendations[index].mal_id})" value=${response.recommendations[index].mal_id}'> ${response.recommendations[index].title}</div>`)
             })
